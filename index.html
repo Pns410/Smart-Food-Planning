@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% from "_home_parts.html" import stat_cards, problem, steps, sustain %}
+{% from "_macros.html" import icon %}
+{% block title %}Home{% endblock %}
+{% block content %}
+<section class="hero-eco">
+  <span class="leaf leaf-1" aria-hidden="true"></span><span class="leaf leaf-2" aria-hidden="true"></span><span class="leaf leaf-3" aria-hidden="true"></span>
+  <div class="hero-text">
+    <h1>Plan meals.<br>Reduce waste.<br>Share surplus.</h1>
+    <p class="lead">Every plate prepared but never eaten took water, fuel and a cook’s time. Just Enough helps you prepare the right amount, and gives any surplus a route to people who can use it.</p>
+    <div class="button-row"><a class="btn btn-lg btn-light" href="{{ url_for('main.event_new') }}">{{ icon('plus') }} Plan an Event</a>
+      <a class="btn btn-lg btn-outline-light" href="{{ url_for('main.ngos') }}">Browse NGO directory</a></div>
+  </div>
+  <div class="hero-impact" aria-label="Current impact figures">
+    <div><span class="big">{{ stats.surplus_kg|num(1) }} kg</span><span>expected surplus across your plans, a chance to share</span></div>
+    <div><span class="big">{{ stats.donated_kg|num(1) }} kg</span><span>marked Completed in donation records</span></div>
+  </div>
+  <svg class="wave" viewBox="0 0 1200 60" preserveAspectRatio="none" aria-hidden="true"><path d="M0 30 C200 70 400 0 600 30 S1000 60 1200 20 V60 H0 Z"/></svg>
+</section>
+{{ stat_cards(stats) }}
+{{ problem() }}
+<section class="path-section"><h2>How it works</h2>{{ steps() }}</section>
+{{ sustain() }}
+{% endblock %}

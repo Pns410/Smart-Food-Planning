@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}Just Enough{% endblock %} · Just Enough</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/components.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/design.css') }}">
+</head>
+<body>
+{% from "_macros.html" import icon %}
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-nav">
+  <div class="nav-inner">
+    <a class="brand" href="{{ url_for('main.index') }}"><span class="brand-leaf">{{ icon('leaf') }}</span><span class="brand-name">Just Enough</span></a>
+    <button class="menu-btn" type="button" data-nav-toggle aria-expanded="false" aria-controls="eco-nav">{{ icon('menu') }}<span class="sr-only">Menu</span></button>
+    <nav class="eco-nav" id="eco-nav" aria-label="Main navigation">{% include "_navlinks.html" %}
+      <a class="btn btn-primary nav-cta" href="{{ url_for('main.event_new') }}">Plan an Event</a></nav>
+  </div>
+</header>
+<main id="main" class="content">
+  {% include "_flashes.html" %}
+  {% block content %}{% endblock %}
+</main>
+<footer class="site-footer">
+  <div class="footer-inner">
+    <p class="footer-line">Cook for who comes. Share what is left.</p>
+    <p>Estimates are planning aids, not guarantees. Food-safety timing is guidance, not certified advice.</p>
+  </div>
+</footer>
+{% include "_confirm.html" %}
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
